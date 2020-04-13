@@ -10,13 +10,16 @@ public class HeightAndDepth {
     }
 	
 	public int height(Position<E> position) {
+	if (isExternal(position)) {
+		return 0;
+	}
         int height = 0;
 
         for (Position<E> child : children(position)) {
-            height = Math.max(height, 1 + height(child));
+            height = Math.max(height, height(child));
         }
 
-        return height;
+        return 1 + height;
     }
 
 }
